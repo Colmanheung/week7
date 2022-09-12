@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>customevent</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <style>
+        .componenta {
+            display:block;
+            background-color: gold;
+            height: 150px;
+            text-align:center;
+            padding-top :4em;
+}
+        .componentb {
+            display:block;
+            background-color: rgb(25, 50, 77);
+            height: 150px;
+            text-align:center;
+            padding-top :4em;
+}
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        {{message}}
+        <div>
+            <component-a inline-template @changeparentcount="increaseCount">
+                <div class="componenta">
+                    {{messageFromComponentA}}
+                    <br>
+                    <button>change the root value </button>
+                    <br>
+                    <button>change using emit </button>
+                </div>
+            </component-a>
+        </div>
+        <div>
+            <component-b inline-template>
+                <div class="componentb">
+                    {{messageFromComponentB}}
+                </div>
+            </component-b>
+        </div>
+        <div>
+            <button @click="increaseCount">Click to increase</button>
+        </div>
+        <div style="width:100% ; text-align:center;background-color: aqua;">
+            {{count}}
+        </div>
+    </div>
+    
+    <script>
+
+        Vue.component('component-a',{
+            data(){
+                return{
+                    messageFromComponentA: "Hello from comment A!"
+                }
+            }
+        })
+        Vue.component('component-b',{
+            data(){
+                return{
+                    messageFromComponentB: "Hello from comment B!"
+                }
+            }
+        })
+
+        new Vue({
+            el:'#app',
+            data(){
+                return{
+                    message: "hello",
+                    count: 0
+                }
+            },
+            methods:{
+                increaseCount(){
+                    this.count += 1
+                }
+            }
+        })
+    </script>
+</body>
+</html>

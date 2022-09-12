@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week7_tasks</title>   
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        {{message}}
+
+        <div class="componenta">
+            <component-a inline-template>
+                <div>
+                    <h1>{{componentamessage}}</h1>
+                </div>
+            </component-a>
+        </div>
+        <div class="componentb">
+            <component-b></component-b>
+        </div>
+    </div>
+   
+    <script>
+
+        let componentB = {
+            data(){
+                return{
+                    componentBMessage: "Hello From Compnent B"
+                }
+            },
+            template:'<h1>{{componentBMessage}}</h1>'
+        }
+        // two way to create component
+        //Global registration
+        Vue.component('component-a',{
+            data() {
+                return{
+                    componentamessage: "Hello from component A"
+                }
+            },
+            template: '<h1>{{componentamessage}}</h1>'
+        })
+
+        new Vue({
+            el:'#app',
+            data(){
+                return{
+                     message:"Hello week 7"
+                }
+               
+            },
+            components: {
+                'component-b':componentB
+            }
+        })
+
+    </script>
+</body>
+</html>

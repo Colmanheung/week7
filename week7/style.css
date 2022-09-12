@@ -1,0 +1,15 @@
+.componenta {
+    display:block;
+    background-color: gold;
+    height: 150px;
+    text-align:center;
+    padding-top :4em;
+}
+
+.componentb {
+    display:block;
+    background-color: rgb(58, 86, 148);
+    height: 150px;
+    text-align:center;
+    padding-top :4em;
+}

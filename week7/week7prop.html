@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>week7prop</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <style>
+
+        .componentprops {
+            display:block;
+            background-color: rgb(210, 88, 31);
+            height: 150px;
+            text-align:center;
+            padding-top :4em;
+}
+        .componentslots {
+            display:block;
+            background-color: rgb(17, 173, 111);
+            height: 150px;
+            text-align:center;
+            padding-top :4em;
+}
+    </style>
+</head>
+<body>
+    <div id="app">
+        {{message}}
+        <div class="componentprops">
+            <component-props inline-template propsname="Props Value Passed">
+                <div>
+                    {{message}}
+                    <br>
+                    {{propsname}}
+                </div>
+            </component-props>
+
+        
+        </div>
+        <div class="componentslots"> 
+            <component-slots>
+                I want to travel around the world.
+                <template v-slot:header>
+                    This is a header slot!
+                </template>
+                <template v-slot:footer>
+                    This is a footer slot!
+                </template>
+                Wont print this text
+            </component-slots>
+        </div>
+    </div>
+
+    <script type="text/x-template" id="template1">
+        <div>
+            <h1>{{message1}}</h1>
+            <slot></slot>
+            <header>
+                <slot name="header"><slot>
+            </header>
+            <footer>
+                <slot name="footer"><slot>
+            </footer>
+        </div>
+    </script>
+
+
+    <script>
+        Vue.component('component-slots',{
+            data(){
+                return{
+                    message1:"hello  everyone"
+                }
+            },
+            template: "#template1"
+        })
+
+        Vue.component('component-props',{
+            props:["propsname"],
+            data(){
+                return{
+                    message: "Hello from prop component"
+                }
+            }
+        })
+
+        new Vue({
+            el:"#app",
+            data() {
+                return{
+                    message: "Hello welcome back to Bedtime Diary!"
+                }
+            }
+        })
+    </script>
+    
+</body>
+</html>
